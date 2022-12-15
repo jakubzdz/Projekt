@@ -1,0 +1,176 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bilboteka</title>
+  </head>
+  <body>
+    <p id="tfu"></p>
+    <form>
+      <label>Podaj wszystkie swoje informacje</label><br /><br />
+      <label for="imie">Imie i Nazwisko</label><br />
+      <input type="text" id="1" name="imie" /><br /><br />
+      <label for="wiek">Wiek</label><br />
+      <input type="number" id="2" name="wiek" /><br /><br />
+      <label for="email">Email</label><br />
+      <input type="email" id="3" name="email" /><br /><br />
+      <label for="pesel">PESEL</label><br />
+      <input type="number" id="4" name="pesel" /><br /><br />
+      <input type="radio" id="plec1" name="plec" value="Mezczyzna" />
+      <label for="Mezczyzna">Mezczyzna</label><br />
+      <input type="radio" id="plec2" name="plec" value="Kobieta" />
+      <label for="Kobieta">Kobieta</label><br /><br />
+      <label for="telefon">Telefon</label><br />
+      <input type="number" id="5" name="telefon" /><br /><br />
+      <label for="klasa">Klasa</label><br />
+      <input type="text" id="6" name="klasa" /><br /><br />
+      <label for="tytul">Tytul Ksiazki</label><br />
+      <input type="text" id="7" name="tytul" /><br /><br />
+      <label for="wydawca">Wydawca</label><br />
+      <input type="text" id="8" name="wydawca" /><br /><br />
+      <label for="isbn">ISBN</label><br />
+      <input type="number" id="9" name="isbn" /><br /><br />
+      <label for="numer">Numer Ewidencyjny</label><br />
+      <input type="number" id="10" name="numer" /><br /><br />
+      <label for="uwagi">Uwagi</label><br />
+      <input type="text" id="11" name="uwagi" /><br /><br />
+      <input type="button" value="Gotowe!" onclick="essa()" />
+    </form>
+    <div id="header"></div>
+
+    <script src="script.js">
+        function essa() {
+          let lazarz = "";
+          let x = 0;
+          if (document.getElementById("plec1").checked == true) {
+            var p = 1;
+          } else {
+            var p = 2;
+          }
+          document.getElementById("tfu").innerHTML = "";
+          if (document.getElementById(1).value == "") {
+            //lazarz += "Nie ma imienia?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma imienia?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(2).value == "") {
+            //lazarz += "Nie ma wieku?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma wieku?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(3).value == "") {
+            //lazarz += "Nie ma emaila?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma emaila?<br>";
+          } else {
+            x++;
+          }
+          const wagi = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1];
+          let iloczyn = [];
+          let suma = 0;
+          for (i = 0; i < 10; i++) {
+            iloczyn[i] = wagi[i] * document.getElementById(4).value[i];
+          }
+          for (i = 0; i < 10; i++) {
+            suma += iloczyn[i];
+          }
+          let m = suma % 10;
+          let xd = 10 - m;
+
+          if (document.getElementById(4).value == "") {
+            //lazarz += "Nie ma pesela?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma pesela?<br>";
+          } else if (document.getElementById(4).value.toString().length != 11) {
+            //lazarz += "Błędna długość pesela?\n";
+            document.getElementById("tfu").innerHTML +=
+              "Błędna długość pesela?<br>";
+          } else if (document.getElementById(4).value[9] != p) {
+            //lazarz += "Błędna płeć lub pesel?\n";
+            document.getElementById("tfu").innerHTML +=
+              "Błędna płeć lub pesel?<br>";
+          } else if (xd != document.getElementById(4).value[10]) {
+            document.getElementById("tfu").innerHTML +=
+              "Błędna suma kontrolna?<br>";
+          } else if (m != 0 && document.getElementById(4).value[10] == 0) {
+            document.getElementById("tfu").innerHTML +=
+              "Błędna suma kontrolna?<br>";
+          } else {
+            x++;
+          }
+          if (
+            document.getElementById("plec1").checked == false &&
+            document.getElementById("plec2").checked == false
+          ) {
+            //lazarz += "Nie ma płci?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma płci?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(5).value == "") {
+            //lazarz += "Nie ma telefonu?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma telefonu?<br>";
+          } else if (document.getElementById(5).value.toString().length != 9) {
+            //lazarz += "Błędny numer telefonu?\n";
+            document.getElementById("tfu").innerHTML +=
+              "Błędny numer telefonu?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(7).value == "") {
+            //lazarz += "Nie ma tytułu?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma tytułu?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(8).value == "") {
+            //lazarz += "Nie ma wydawcy?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma wydawcy?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(9).value == "") {
+            //lazarz += "Nie ma ISBN?\n";
+            document.getElementById("tfu").innerHTML += "Nie ma ISBN?<br>";
+          } else {
+            x++;
+          }
+          if (document.getElementById(10).value == "") {
+            //lazarz += "Nie ma numeru ewidencyjnego?\n";
+            document.getElementById("tfu").innerHTML +=
+              "Nie ma numeru ewidencyjnego?<br>";
+          } else {
+            x++;
+          }
+          if (x == 10) {
+            //alert("Wszystko git");
+            document.getElementById("tfu").innerHTML += "Wszystko git?<br>";
+            document.getElementById("tfu").style.border = "red solid 5px";
+            fajowa();
+          } else {
+            document.getElementById("tfu").style.border = "red solid 5px";
+          }
+          //alert(lazarz);
+        }
+      //   await fetch("http://imiki.pl:1090/form",
+      //         {
+      //             method: "POST",
+      //             headers: {
+      //                 "Content-Type": "application/json"
+      //             },
+      //             body: JSON.stringify(data)
+      //         }).then(res => res.json()).then(data => console.log(data)).catch(err => console.log(err))
+      //         comms.style.color = "green";
+      //         comms.innerHTML = "Wysłano formularz! :)";
+    </script>
+    <style>
+      #tfu {
+        color: rgb(0, 0, 0);
+        background-color: yellow;
+        text-align: center;
+        width: 30%;
+      }
+    </style>
+  </body>
+</html>
